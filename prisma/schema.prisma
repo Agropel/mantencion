@@ -1,0 +1,67 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Maquina {
+  id  Int   @id   @default(autoincrement())
+  name  String
+  marca String?
+  modelo String?
+  partes  Partes[]
+}
+
+model Partes {
+  id  Int   @id   @default(autoincrement())
+  name  String
+  image   String?
+  maquinaId  Int
+  maquina  Maquina @relation(fields: [maquinaId], references: [id])
+  orderItems OrderPartes[]
+}
+
+model Tipo {
+  id  Int   @id   @default(autoincrement())
+  name  String
+}
+
+
+model Order {
+  id      Int   @id   @default(autoincrement())
+  name    String
+  image   String?
+  date    DateTime  @default(now())
+  status  Boolean   @default(false)
+  planificacion DateTime
+  trabajo String?
+  tipo String
+  hrequeridas String?
+  taller String?
+  repuestos String?
+  personal String?
+  inicio String?
+  fin String?
+  orderReadyAt  DateTime?
+  orderPartes OrderPartes[]
+}
+
+model OrderPartes {
+  id      Int   @id   @default(autoincrement())
+  orderId Int
+  order   Order @relation(fields: [orderId], references: [id])
+  partesId   Int
+  partes  Partes @relation(fields: [partesId], references: [id])
+  quantity  Int
+}
+
+
