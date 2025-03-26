@@ -45,3 +45,20 @@
 // };
 
 // export default EditMaquinasPage;
+
+
+
+"use client";
+import { NextPage } from "next";
+
+
+const EditMaquinasPage: NextPage = () => {
+    return (
+        <div>
+            <h1>Editar Máquina</h1>
+           
+        </div>
+    );
+};
+
+export default EditMaquinasPage;
