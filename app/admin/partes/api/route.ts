@@ -21,3 +21,27 @@
 //     res.status(500).json({ error: 'Error al obtener datos' });
 //   }
 // }
+
+
+// app/admin/partes/api/route.ts
+
+import { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from "@/src/lib/prisma";
+
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    const { maquinaId } = req.query;
+
+    if (!maquinaId) {
+      return res.status(400).json({ error: 'maquinaId requerido' });
+    }
+
+    const firstPart = await prisma.partes.findFirst({
+      where: { maquinaId: Number(maquinaId) },
+    });
+
+    res.status(200).json(firstPart);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener datos' });
+  }
+}
