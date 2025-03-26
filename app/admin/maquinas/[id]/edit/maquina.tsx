@@ -6,10 +6,10 @@ import Heading from "@/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
 import { notFound } from "next/navigation";
 
-// Función para obtener la máquina por ID de forma asíncrona
+
 async function getMaquinaById(id: number) {
     if (isNaN(id)) {
-        notFound(); // Manejo de error si el ID no es válido
+        notFound();
     }
 
     const maquina = await prisma.maquina.findUnique({
@@ -23,12 +23,11 @@ async function getMaquinaById(id: number) {
     return maquina;
 }
 
-// Definimos el tipo de página con NextPage
 const EditMaquinasPage: NextPage<{ params: { id: string } }> = async ({ params }) => {
-    // Asegúrate de convertir el id de string a número correctamente
+
     const idNumber = Number(params.id);
 
-    // Obtener la máquina a través de la función asíncrona
+
     const maquina = await getMaquinaById(idNumber);
 
     return (

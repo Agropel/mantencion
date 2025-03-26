@@ -1,5 +1,4 @@
 import ToastNotification from "@/components/ui/ToastNotification"
-// import MantencionSidebar from "@/components/mantencion/MantencionSidebar";
 import Logo from "@/components/ui/Logo";
 
 export default async function AdminLayout({

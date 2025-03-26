@@ -20,9 +20,8 @@ export async function GET() {
         Correctivo: 0,
     };
 
-    // Asignamos los valores obtenidos de la base de datos
     ordenesPorTipo.forEach((item) => {
-        const tipo = item.tipo as "Preventivo" | "Emergencia" | "Correctivo"; // Forzar tipo
+        const tipo = item.tipo as "Preventivo" | "Emergencia" | "Correctivo";
         conteoPorTipo[tipo] = item._count.tipo;
     });
 

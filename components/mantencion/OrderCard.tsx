@@ -1,4 +1,3 @@
-
 import { OrderWithPartes } from "@/src/types"
 import Link from "next/link"
 

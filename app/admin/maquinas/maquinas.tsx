@@ -4,7 +4,7 @@ import MaquinasTable from '@/components/maquinas/MaquinasTable';
 import Heading from "@/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
 import Link from 'next/link';
-// import MaquinasSearchForm from '@/components/maquinas/MaquinasSearchForm';
+
 
 
 async function maquinasCount() {
@@ -45,7 +45,7 @@ export default async function MaquinasPage({searchParams} : { searchParams: {pag
                   className='bg-green-600 w-full lg:w-auto text-xl px-10 py-3 text-center font-bold cursor-pointer'
               >Crea Un Nuevo Equipo</Link>
 
-              {/* <MaquinasSearchForm /> */}
+              
           </div>
 
           <MaquinasTable

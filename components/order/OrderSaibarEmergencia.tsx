@@ -7,15 +7,15 @@ async function getMaquinas() {
 }
 
 export default async function OrderSaibar() {
-    const maquinas = await getMaquinas(); // Obtener TODAS las máquinas
+    const maquinas = await getMaquinas();
 
     return (
         <aside className="md:w-80 md:h-screen bg-white md:overflow-scroll">
             <Logo />
             <nav className="mt-10">
-                {/* Limitamos la altura del contenedor de las máquinas para el scroll */}
+
                 <div className="max-h-[200px] overflow-y-auto">
-                    {/* Pasamos TODAS las máquinas a MaquinaIconEmergencia */}
+
                     <MaquinaIconEmergencia maquinas={maquinas} />
                 </div>
             </nav>

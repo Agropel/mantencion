@@ -1,8 +1,8 @@
-import { completeOrder } from "@/actions/complete-order-action"
 import { OrderWithPartes } from "@/src/types"
 import Link from "next/link"
 
-// import { formatCurrency } from "@/src/utils"
+
+
 
 type Props = {
     orders: OrderWithPartes[];

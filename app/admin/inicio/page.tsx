@@ -43,7 +43,7 @@ type CardProps = {
     title: string;
     count: number;
     color: string;
-    link: string;  // Añadir esta propiedad
+    link: string;
 };
 
 function Card({ title, count, color, link }: CardProps) {

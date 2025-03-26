@@ -7,12 +7,12 @@ import { OrderWithPartes } from "@/src/types";
 
 export default function OrdersPage() {
   const searchParams = useSearchParams();
-  const tipo = searchParams.get("tipo"); // Obtiene el parámetro 'tipo' de la URL
+  const tipo = searchParams.get("tipo");
 
-  const url = tipo ? `/admin/motivo/api?tipo=${tipo}` : "/admin/motivo/api"; // Construye la URL con el filtro
+  const url = tipo ? `/admin/motivo/api?tipo=${tipo}` : "/admin/motivo/api";
 
   const fetcher = () => fetch(url).then((res) => res.json());
-  const { data, error, isLoading } = useSWR<OrderWithPartes[]>(url, fetcher, {
+  const { data, isLoading } = useSWR<OrderWithPartes[]>(url, fetcher, {
     refreshInterval: 1000,
     revalidateOnFocus: false,
   });

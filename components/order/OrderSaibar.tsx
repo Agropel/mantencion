@@ -7,13 +7,12 @@ async function getMaquinas() {
 }
 
 export default async function OrderSaibar() {
-    const maquinas = await getMaquinas(); // Obtener TODAS las máquinas
+    const maquinas = await getMaquinas();
 
     return (
         <aside className="md:w-80 md:h-screen bg-white md:overflow-scroll"> 
             <Logo />
             <nav className="mt-10">
-                {/* Pasamos TODAS las máquinas a MaquinaIcon */}
                 <MaquinaIcon maquinas={maquinas} />
             </nav>
         </aside>

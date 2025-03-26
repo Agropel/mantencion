@@ -1,47 +1,22 @@
-// import { NextApiRequest, NextApiResponse } from 'next';
-// import { prisma } from "@/src/lib/prisma"
-
-// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-//   if (req.method !== 'GET') {
-//     return res.status(405).json({ error: 'Método no permitido' });
-//   }
-
-//   try {
-//     const { maquinaId } = req.query;
-//     if (!maquinaId) {
-//       return res.status(400).json({ error: 'maquinaId requerido' });
-//     }
-
-//     const firstPart = await prisma.partes.findFirst({
-//       where: { maquinaId: Number(maquinaId) },
-//     });
-
-//     res.status(200).json(firstPart);
-//   } catch (error) {
-//     res.status(500).json({ error: 'Error al obtener datos' });
-//   }
-// }
-
-
-// app/admin/partes/api/route.ts
-
-import { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from "@/src/lib/prisma";
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: Request) {
   try {
-    const { maquinaId } = req.query;
+    const { searchParams } = new URL(req.url);
+    const maquinaId = searchParams.get("maquinaId");
 
     if (!maquinaId) {
-      return res.status(400).json({ error: 'maquinaId requerido' });
+      return NextResponse.json({ error: "maquinaId requerido" }, { status: 400 });
     }
 
     const firstPart = await prisma.partes.findFirst({
       where: { maquinaId: Number(maquinaId) },
     });
 
-    res.status(200).json(firstPart);
+    return NextResponse.json(firstPart, { status: 200 });
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener datos' });
+    console.error("Error en la API:", error);
+    return NextResponse.json({ error: "Error al obtener datos" }, { status: 500 });
   }
 }

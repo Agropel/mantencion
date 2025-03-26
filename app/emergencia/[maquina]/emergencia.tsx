@@ -5,11 +5,11 @@ import { prisma } from "@/src/lib/prisma";
 async function getPartes(maquinaId: number) {
   const partess = await prisma.partes.findMany({
     where: {
-      maquinaId: maquinaId, // Filtrar por el ID numérico de la máquina
+      maquinaId: maquinaId,
       name: "Emergencia",
     },
     include: {
-      maquina: true, // Asegurar que Prisma traiga la relación con Maquina
+      maquina: true,
     },
   });
   
@@ -17,7 +17,7 @@ async function getPartes(maquinaId: number) {
 }
 
 export default async function OrderPage({ params }: { params: { maquina: string } }) {
-  const maquinaId = Number(params.maquina); // Convertir string a número
+  const maquinaId = Number(params.maquina);
 
   if (isNaN(maquinaId)) {
     throw new Error("ID de máquina inválido");

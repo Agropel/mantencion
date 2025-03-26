@@ -7,7 +7,7 @@ import { OrderWithPartes } from '@/src/types';
 export default function OrdersPage() {
   const url = '/admin/listas/api'
   const fetcher = () => fetch(url).then(res => res.json())
-  const { data, error, isLoading } = useSWR<OrderWithPartes[]>(url, fetcher, {
+  const { data, isLoading } = useSWR<OrderWithPartes[]>(url, fetcher, {
     refreshInterval: 1000,
     revalidateOnFocus: false,
   })

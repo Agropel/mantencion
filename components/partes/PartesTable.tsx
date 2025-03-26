@@ -1,5 +1,4 @@
-import { PartesWithMaquina } from "@/app/admin/partes/page"
-import { formatCurrency } from "@/src/utils"
+import { PartesWithMaquina } from "@/app/admin/partes/partes"
 import Link from "next/link"
 
 type PartesTableProps = {

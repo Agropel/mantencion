@@ -1,6 +1,5 @@
 import GoBackButton from '@/components/ui/GoBackButton';
 import CompleteOrderButton from '../ui/CompleteOrderButton';
-import { completeOrder } from "@/actions/complete-order-action"
 import { OrderWithPartes } from "@/src/types"
 import Link from "next/link"
 

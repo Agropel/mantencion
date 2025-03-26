@@ -12,7 +12,7 @@ export async function GET() {
             include: {
               partes: {
                 include: {
-                  maquina: true,  // Incluye la relación con 'maquina'
+                  maquina: true
                 },
               },
         }}}

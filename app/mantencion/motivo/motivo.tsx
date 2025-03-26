@@ -12,7 +12,7 @@ export default function OrdersPage() {
   const url = tipo ? `/mantencion/motivo/api?tipo=${tipo}` : "/mantencion/motivo/api"; // Construye la URL con el filtro
 
   const fetcher = () => fetch(url).then((res) => res.json());
-  const { data, error, isLoading } = useSWR<OrderWithPartes[]>(url, fetcher, {
+  const { data, isLoading } = useSWR<OrderWithPartes[]>(url, fetcher, {
     refreshInterval: 1000,
     revalidateOnFocus: false,
   });

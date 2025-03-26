@@ -10,9 +10,9 @@ export default function AddMaquinasForm({children}: {children : React.ReactNode}
 
     const handleSubmit = async (formData: FormData) => {
         const data = {
-            name: formData.get('name') ?? "",  // Convertir null a ""
-            marca: formData.get('marca') ?? "",// Convertir null a ""
-            modelo: formData.get('modelo') ?? "",// Convertir null a ""
+            name: formData.get('name') ?? "",  
+            marca: formData.get('marca') ?? "",
+            modelo: formData.get('modelo') ?? "",
         }
 
 

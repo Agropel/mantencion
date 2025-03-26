@@ -1,7 +1,5 @@
-import { prisma } from "@/src/lib/prisma"
-import ImageUpload from "./ImageUpload"
 import { Order } from "@prisma/client"
-import OrderCard from '@/components/mantencion/OrderCard';
+
 
 
 

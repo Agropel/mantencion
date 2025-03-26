@@ -13,7 +13,7 @@ export default function ImageUpload({image} : {image: string | undefined}) {
             onSuccess={(result, { widget }) => {
                 if(result.event === 'success') {
                     widget.close()
-                    // @ts-ignore
+                    // @ts-expect-error: result.info no siempre tiene secure_url
                     setImageUrl(result.info?.secure_url)
                 }
             }}

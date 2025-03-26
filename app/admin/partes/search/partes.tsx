@@ -8,7 +8,6 @@ async function searchPartes(searchTerm: string) {
         where: {
             name: {
                 contains: searchTerm,
-                // mode: 'insensitive'
             }
         },
         include: {

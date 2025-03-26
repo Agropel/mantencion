@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+
 
 type PrintButtonProps = {
     targetId: string; // ID del elemento que se imprimirá

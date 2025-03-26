@@ -1,6 +1,5 @@
 "use client"
 import { updateOrder} from "@/actions/update-order-action"
-import { completeOrder } from "@/actions/complete-order-action"
 import { OrderSchema } from "@/src/schema"
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"

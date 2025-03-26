@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     const orders = await prisma.order.findMany({
         where: {
             status: true,
-            ...(tipo ? { tipo } : {}), // Agrega filtro solo si 'tipo' está presente
+            ...(tipo ? { tipo } : {}),
         },
         include: {
             orderPartes: {

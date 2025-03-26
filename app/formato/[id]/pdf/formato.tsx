@@ -1,10 +1,6 @@
 import OrderPdf from "@/components/order/OrderPdf"
-import GoBackButton from "@/components/ui/GoBackButton"
-import PrintPdf from "@/components/ui/PrintButton"
-import Heading from "@/components/ui/Heading"
 import { prisma } from "@/src/lib/prisma"
-import Link from "next/link"
-import { notFound, redirect } from "next/navigation"
+import { notFound} from "next/navigation"
 
 async function getOrdertById(id: number) {
     const order = await prisma.order.findUnique({
@@ -38,9 +34,6 @@ export default async function EditOrderPage({ params }: { params: { id: string }
 
     return (
         <>
-            {/* <Heading>Editar Tarea {order.name}</Heading> */}
-
-            {/* <GoBackButton /> */}
                 <OrderPdf
                 order={order}
             />

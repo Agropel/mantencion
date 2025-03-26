@@ -1,4 +1,4 @@
-import { TiposWithTipos } from "@/app/admin/tipos/page"
+import { TiposWithTipos } from "@/app/admin/tipos/tipos"
 import Link from "next/link"
 
 type TiposTableProps = {

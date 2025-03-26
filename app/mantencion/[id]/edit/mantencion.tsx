@@ -1,10 +1,8 @@
 import EditOrderForm from "@/components/mantencion/EditOrderForm"
 import OrderForm from "@/components/mantencion/OrderForm"
 import GoBackButton from "@/components/ui/GoBackButton"
-import Heading from "@/components/ui/Heading"
 import { prisma } from "@/src/lib/prisma"
-import Link from "next/link"
-import { notFound, redirect } from "next/navigation"
+import { notFound } from "next/navigation"
 
 async function getOrdertById(id: number) {
     const order = await prisma.order.findUnique({
@@ -30,7 +28,6 @@ export default async function EditOrderPage({ params }: { params: { id: string }
             
             <GoBackButton />
             <EditOrderForm>
-                {/* <Heading>OT Nº {order.id}</Heading> */}
                 
                 <OrderForm 
                     order={order}

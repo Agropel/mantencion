@@ -4,7 +4,6 @@ import TiposTable from '@/components/tipos/TiposTable';
 import Heading from "@/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
 import Link from 'next/link';
-// import MaquinasSearchForm from '@/components/maquinas/MaquinasSearchForm';
 
 
 async function tiposCount() {
@@ -45,7 +44,6 @@ export default async function TiposPage({searchParams} : { searchParams: {page: 
                   className='bg-green-600 w-full lg:w-auto text-xl px-10 py-3 text-center font-bold cursor-pointer'
               >Crea Un Nuevo Tipo De Trabajo</Link>
 
-              {/* <MaquinasSearchForm /> */}
           </div>
 
           <TiposTable

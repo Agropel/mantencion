@@ -1,5 +1,4 @@
-import { MaquinasWithMaquina } from "@/app/admin/maquinas/page"
-import { formatCurrency } from "@/src/utils"
+import { MaquinasWithMaquina } from "@/app/admin/maquinas/maquinas"
 import Link from "next/link"
 
 type MaquinasTableProps = {
