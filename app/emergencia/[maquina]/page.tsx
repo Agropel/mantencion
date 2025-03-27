@@ -2,6 +2,7 @@ import PartesCardEmergencia from "@/components/partes/PartesCardEmergencia";
 import Heading from "@/components/ui/Heading";
 import { prisma } from "@/src/lib/prisma";
 
+// Función asíncrona para obtener las partes por ID de máquina
 async function getPartes(maquinaId: number) {
   const partess = await prisma.partes.findMany({
     where: {
@@ -12,19 +13,22 @@ async function getPartes(maquinaId: number) {
       maquina: true,
     },
   });
-  
+
   return partess;
 }
 
-export default async function OrderPage({ params }: { params: { maquina: string } }) {
-  const maquinaId = Number(params.maquina);
+type Params = Promise<{ maquina: string }>;
+
+export default async function OrderPage({ params }: { params: Params }) {
+  const { maquina } = await params; // Esperar la resolución de la promesa 'params'
+  const maquinaId = Number(maquina); // Convertir el ID a número
 
   if (isNaN(maquinaId)) {
     throw new Error("ID de máquina inválido");
   }
 
+  // Obtener los datos de las partes relacionadas
   const partess = await getPartes(maquinaId);
-  
 
   return (
     <>

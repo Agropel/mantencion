@@ -1,4 +1,4 @@
-import { PartesWithMaquina } from "@/app/admin/partes/partes"
+import { PartesWithMaquina } from "@/app/admin/partes/page"
 import Link from "next/link"
 
 type PartesTableProps = {
