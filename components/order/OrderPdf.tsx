@@ -10,8 +10,43 @@ type OrderFormProps = {
 
 
 
+
 export default function OrderCard({ order }: OrderFormProps) {
 
+
+    // Función para calcular la diferencia entre dos horas en formato "HH:mm"
+    const calculateTimeDifference = (start: string | null, end: string | null): string => {
+        // Si start o end son null, asignamos un valor predeterminado
+        const startTime = start?.split(":") ?? ["00", "00"];
+        const endTime = end?.split(":") ?? ["00", "00"];
+    
+        const startHours = parseInt(startTime[0], 10);
+        const startMinutes = parseInt(startTime[1], 10);
+    
+        const endHours = parseInt(endTime[0], 10);
+        const endMinutes = parseInt(endTime[1], 10);
+    
+        // Convertimos las horas y minutos a minutos totales
+        const startTotalMinutes = startHours * 60 + startMinutes;
+        const endTotalMinutes = endHours * 60 + endMinutes;
+    
+        // Calculamos la diferencia en minutos
+        const differenceInMinutes = endTotalMinutes - startTotalMinutes;
+    
+        if (differenceInMinutes < 0) {
+        return "Error en el cálculo (hora de fin antes de hora de inicio)";
+        }
+    
+        // Convertimos los minutos a horas y minutos
+        const hours = Math.floor(differenceInMinutes / 60);
+        const minutes = differenceInMinutes % 60;
+    
+        return `${hours} hr y ${minutes} mnts`;
+    };
+    
+    // Llamada a la función con los valores de inicio y fin, usando valores por defecto si son null
+    const timeDifference = calculateTimeDifference(order.inicio ?? "00:00", order.fin ?? "00:00");
+  
  
     return (
         <section
@@ -58,44 +93,7 @@ export default function OrderCard({ order }: OrderFormProps) {
                         </tr>
                     ))}
 
-                    {/* {order.orderPartes.map((partes) => (
-                        <tr key={partes.partesId}>
-                            <td className="py-2 px-4 font-semibold  border border-gray-300 text-center" colSpan={8} >Equipo: {partes.partes.maquina?.name ?? "No disponible"}  /  Marca: {partes.partes.maquina?.marca ?? "No disponible"}  /  Modelo: {partes.partes.maquina?.modelo ?? "No disponible"} </td>
-                        </tr>
-                    ))}
-
                     
-
-                    <tr>
-                        <td className="py-2 px-4 font-semibold text-left" colSpan={3}>Descripciòn Problema/Causa</td>
-                    </tr>
-
-                    <tr>
-                        <td className="py-2 pb-4 px-4 font-semibold text-left border " colSpan={3} rowSpan={4}>Descripciòn Problema/Causa</td>
-                    </tr>
-
-                    <tr>
-                        <td className="py-2 px-4 font-semibold text-left"></td>
-                    </tr>
-
-                    <tr>
-                        <td className="py-2 px-4 font-semibold text-left"></td>
-                    </tr> */}
-
-                    
-
-
-
-                    {/* {order.orderPartes.map((partes) => (
-                        <tr key={partes.partesId} className="border-t">
-                            <td className="py-2 px-4 border border-gray-300">{partes.partes.name}</td>
-                            <td className="py-2 px-4 border border-gray-300">
-                                {partes.partes.maquina?.name ?? "No disponible"}
-                            </td>
-                            <td className="py-2 px-4 border border-gray-300">{partes.quantity}</td>
-                        </tr>
-                        
-                    ))} */}
 
                     
                 </tbody>
@@ -114,7 +112,7 @@ export default function OrderCard({ order }: OrderFormProps) {
 
                 <div className="grid grid-cols-1 py-2 bg-white">
                     <div className="grid grid-cols-6">
-                        <div className="border border-white text-right">Fecha Solicitud:&nbsp;</div>
+                        <div className="border border-white text-right">Solicitud:&nbsp;</div>
                         <div className="border font-semibold lg:w-1/2 sm:w-full">{new Date(order.date).toLocaleDateString()}</div>
                         <div className="border border-white text-right">Equipo Critico:&nbsp;</div>
                         <div className="border font-semibold lg:w-1/4 sm:w-1/4">No</div>
@@ -130,9 +128,9 @@ export default function OrderCard({ order }: OrderFormProps) {
                             <div className="border text-center lg:h-14 sm:h-20">{order.name}</div>
                         </div>
                         <div className="grid grid-cols-1">
-                            <div className="text-left font-semibold border">&nbsp; Equipo:&nbsp;{partes.partes.maquina?.name ?? "No disponible"}</div>
+                            <div className="text-left font-semibold border">&nbsp;{partes.partes.maquina?.name ?? "No disponible"}</div>
                             <div className="text-left font-semibold border">&nbsp; Marca:&nbsp;{partes.partes.maquina?.marca ?? "No disponible"}</div>
-                            <div className="text-left font-semibold border">&nbsp; Modelo:&nbsp;{partes.partes.maquina?.modelo ?? "No disponible"}</div>
+                            <div className="text-left font-semibold border">&nbsp;{partes.partes.name ?? "No disponible"}</div>
                         </div>
                         
                     </div>
@@ -164,11 +162,8 @@ export default function OrderCard({ order }: OrderFormProps) {
                         <div className="text-center border lg:h-14 sm:h-20">{order.hrequeridas}</div>
                         <div className="text-center font-semibold">
                             Herramientas Devueltas a Taller?
-                            <div className="grid grid-cols-4">
-                                <div className="">Si</div>
-                                <div className="border w-1/5"></div>
-                                <div className="">No</div>
-                                <div className="border w-1/5"></div>
+                            <div className="grid grid-cols-1">
+                                <div className="">{order.taller}</div>
                             </div>
                         </div>
                     </div>
@@ -204,7 +199,7 @@ export default function OrderCard({ order }: OrderFormProps) {
                         <div className="border">{order.personal}</div>
                         <div className="border">{order.inicio}</div>
                         <div className="border">{order.fin}</div>
-                        <div className="border"> </div>
+                        <div className="border">{timeDifference}</div>
                         <div className="border"> </div>
                     </div>
                 </div>
