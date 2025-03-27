@@ -1,4 +1,4 @@
-import { MaquinasWithMaquina } from "@/app/admin/maquinas/maquinas"
+import { MaquinasWithMaquina } from "@/app/admin/maquinas/page"
 import Link from "next/link"
 
 type MaquinasTableProps = {
