@@ -58,8 +58,11 @@ async function getPartes(maquinaId: number) {
   return partess;
 }
 
-export default async function OrderPage({ params }: { params: { maquina: string } }) {
-  const maquinaId = Number(params.maquina); // Convertir string a número
+type Params = Promise<{ maquina: string }>;
+
+export default async function OrderPage({ params }: { params: Params }) {
+  const { maquina } = await params; // Resolver la promesa de 'params'
+  const maquinaId = Number(maquina); // Convertir string a número
 
   if (isNaN(maquinaId)) {
     throw new Error("ID de máquina inválido");
