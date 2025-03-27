@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "app/admin/orders/[id]/edit/orders.tsx"  ],
+, "app/admin/orders/[id]/edit/page.tsx"  ],
   "exclude": [
     "node_modules"
   ]
