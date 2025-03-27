@@ -10,15 +10,33 @@ import { OrderWithPartes } from "@/src/types";
 function OrdersContent() {
   const searchParams = useSearchParams();
   const tipo = searchParams.get("tipo");
-  const url = tipo ? `/admin/motivo/api?tipo=${tipo}` : "/admin/motivo/api";
+  console.log("Tipo de búsqueda:", tipo);  // Log para verificar si el parámetro 'tipo' se obtiene correctamente
 
-  const fetcher = () => fetch(url).then((res) => res.json());
-  const { data, isLoading } = useSWR<OrderWithPartes[]>(url, fetcher, {
+  const url = tipo ? `/mantencion/motivo/api?tipo=${tipo}` : "/mantencion/motivo/api";
+
+  const fetcher = async () => {
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log("Data fetched:", data);  // Log aquí para verificar los datos que se reciben de la API
+      return data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return [];
+    }
+  };
+
+  // Usamos useSWR con destructuring para obtener los datos, isLoading y error
+  const { data, isLoading, error } = useSWR<OrderWithPartes[]>(url, fetcher, {
     refreshInterval: 1000,
     revalidateOnFocus: false,
   });
 
+  // Si los datos están cargando, mostramos un mensaje
   if (isLoading) return <p>Cargando...</p>;
+
+  // Si hay un error en la carga de los datos, mostramos el mensaje de error
+  if (error) return <p>Error al cargar los datos...</p>;
 
   return (
     <>
