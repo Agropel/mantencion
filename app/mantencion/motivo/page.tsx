@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import useSWR from "swr";
 import { useSearchParams } from "next/navigation";
-import OrderCardListas from "@/components/order/OrderCardListas";
+import OrderCardListas from "@/components/mantencion/OrderCardListas";
 import Heading from "@/components/ui/Heading";
 import { OrderWithPartes } from "@/src/types";
 
