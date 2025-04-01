@@ -43,7 +43,7 @@ export const PartesSchema = z.object({
         .transform((value) => parseInt(value)) 
         .refine((value) => value > 0, { message: 'La Categoría es Obligatoria' })
         .or(z.number().min(1, {message: 'La Categoría es Obligatoria' })),
-    image: z.string().min(1, {message: 'La Imagen es obligatoria'})
+    image: z.string().optional().nullable(), // Permite undefined o null
 })
 
 // export const MaquinasSchema = z.object({

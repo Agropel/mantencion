@@ -52,10 +52,11 @@ export default async function PartesForm({partes}: PartesFormProps) {
                     ))}
                 </select>
             </div>
-
-            <ImageUpload 
-                image={partes?.image ?? undefined}
-            />
+            <div className="hidden">
+                <ImageUpload 
+                    image={partes?.image ?? undefined}
+                />
+            </div>
         </>
     )
 }
